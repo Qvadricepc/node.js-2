@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const createError = require("http-errors");
-const errorHandler = require("./middleware/errorHandler");
+const boom = require("@hapi/boom");
+const errorHandler = require("./middleware/error-handler");
 const auth = require("./routes/auth");
+const errors = require("./routes/errors");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,9 +17,10 @@ app.get("/ping", async (req, res, next) => {
 });
 
 app.use("/auth", auth);
+app.use("/errors", errors);
 
 app.use((req, res, next) => {
-  next(createError.NotFound());
+  next(boom.notFound());
 });
 
 app.use(errorHandler);
