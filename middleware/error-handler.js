@@ -1,5 +1,11 @@
 const errorHandler = (error, req, res, next) => {
-  res.send(error.output.payload);
+  if (error.isBoom) {
+    res.status(error.output.statusCode).send(error.output.payload);
+  } else {
+    res.status(500).send("Internal Server Error");
+  }
+
+  next();
 };
 
 module.exports = errorHandler;
