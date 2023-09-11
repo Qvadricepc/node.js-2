@@ -6,6 +6,7 @@ const auth = require("./routes/auth");
 const errors = require("./routes/errors");
 const fs = require("fs");
 const morgan = require("morgan");
+const { createLogger, format, transports } = require("winston");
 const { join } = require("path");
 
 const app = express();
@@ -28,6 +29,15 @@ app.get("/ping", async (req, res, next) => {
   return res.json({ message: "pong" });
 });
 
+const logger = createLogger({
+  level: "info",
+  format: format.combine(format.timestamp(), format.json()),
+  transports: [
+    new transports.Console(),
+    new transports.File({ filename: "logfile.log" }),
+  ],
+});
+
 app.use("/auth", auth);
 app.use("/errors", errors);
 
@@ -48,5 +58,6 @@ process.on("unhandledRejection", (reason, promise) => {
 });
 
 app.listen(PORT, () => {
+  logger.info("Server is running");
   console.log(`Server is running on http://localhost:${PORT}`);
 });
