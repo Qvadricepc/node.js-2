@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import * as Boom from "@hapi/boom";
 import { badImplementation } from "../bad-implementation";
 
