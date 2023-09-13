@@ -1,5 +1,5 @@
 const errorHandler = require("../index");
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import * as Boom from "@hapi/boom";
 
 describe("errorHandler middleware", () => {
