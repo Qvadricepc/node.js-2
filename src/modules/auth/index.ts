@@ -1,7 +1,5 @@
 import { auth } from "./controllers/auth";
-const expressAuth = require("express");
-const routerAuth = expressAuth.Router();
+const express = require("express");
+export const router = express.Router();
 
-routerAuth.post("/login", auth);
-
-module.exports = routerAuth;
+router.post("/login", auth);

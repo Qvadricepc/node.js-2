@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { errorHandler } from "./middleware/error-handler";
+import { router as auth } from "./modules/auth";
+import { router as errors } from "./modules/errors";
 const express = require("express");
 require("dotenv").config();
 const boom = require("@hapi/boom");
-const auth = require("./modules/auth");
-const errors = require("./modules/errors");
 const fs = require("fs");
 const morgan = require("morgan");
 const { createLogger, format, transports } = require("winston");
@@ -62,5 +62,3 @@ app.listen(PORT, () => {
   logger.info("Server is running");
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-export default app;

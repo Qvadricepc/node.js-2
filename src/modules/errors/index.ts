@@ -3,15 +3,13 @@ import { unauthorized } from "./controllers/unauthorized";
 import { forbidden } from "./controllers/forbidden";
 import { badImplementation } from "./controllers/bad-implementation";
 
-const expressErrors = require("express");
-const routerErrors = expressErrors.Router();
+const express = require("express");
+export const router = express.Router();
 
-routerErrors.post("/400", badRequest);
+router.post("/400", badRequest);
 
-routerErrors.post("/401", unauthorized);
+router.post("/401", unauthorized);
 
-routerErrors.post("/403", forbidden);
+router.post("/403", forbidden);
 
-routerErrors.post("/500", badImplementation);
-
-module.exports = routerErrors;
+router.post("/500", badImplementation);
