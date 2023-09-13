@@ -1,5 +1,5 @@
 const { unAuthorized } = require("../controllers");
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import * as boom from "@hapi/boom";
 
 describe("unAuthorized middleware", () => {
