@@ -1,6 +1,6 @@
-const { unAuthorized } = require("../controllers");
 import { Request, Response } from "express";
 import * as boom from "@hapi/boom";
+import { unauthorized } from "../unauthorized";
 
 describe("unAuthorized middleware", () => {
   it("should call next with unauthorized error if token is invalid", () => {
@@ -13,7 +13,7 @@ describe("unAuthorized middleware", () => {
     const mockRes = {} as Response;
     const mockNext = jest.fn();
 
-    unAuthorized(mockReq, mockRes, mockNext);
+    unauthorized(mockReq, mockRes, mockNext);
 
     expect(mockNext).toHaveBeenCalledWith(boom.unauthorized());
   });

@@ -1,6 +1,6 @@
-const errorHandler = require("../index");
 import { Request, Response } from "express";
 import * as Boom from "@hapi/boom";
+import { errorHandler } from "../index";
 
 describe("errorHandler middleware", () => {
   it("should handle Boom errors and send the appropriate response", () => {

@@ -1,6 +1,6 @@
-const { forbidden } = require("../controllers");
 import { Request, Response, NextFunction } from "express";
 import * as boom from "@hapi/boom";
+import { forbidden } from "../forbidden";
 
 describe("forbidden middleware", () => {
   it("should always call next with a forbidden error", () => {

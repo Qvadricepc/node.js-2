@@ -1,6 +1,6 @@
-const { badRequest } = require("../controllers");
 import { Request, Response, NextFunction } from "express";
 import * as boom from "@hapi/boom";
+import { badRequest } from "../bad-request";
 
 describe("badRequest middleware", () => {
   it("should call next with a badRequest error if email is missing", () => {

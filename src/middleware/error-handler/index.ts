@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { Boom } from "@hapi/boom";
 
-const errorHandler = (
+export const errorHandler = (
   error: Boom,
   req: Request,
   res: Response,
@@ -15,5 +15,3 @@ const errorHandler = (
 
   next();
 };
-
-module.exports = errorHandler;

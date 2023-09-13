@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
 
-exports.auth = async (req: Request, res: Response) => {
+export const auth = async (req: Request, res: Response) => {
   return res.json({ message: "login" });
 };

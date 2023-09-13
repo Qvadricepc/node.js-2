@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
+import { errorHandler } from "./middleware/error-handler";
 const express = require("express");
 require("dotenv").config();
 const boom = require("@hapi/boom");
-const errorHandler = require("./middleware/error-handler/index");
 const auth = require("./modules/auth");
 const errors = require("./modules/errors");
 const fs = require("fs");

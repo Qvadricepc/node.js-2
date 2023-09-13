@@ -1,15 +1,14 @@
+import { badRequest } from "./controllers/bad-request";
+import { unauthorized } from "./controllers/unauthorized";
+import { forbidden } from "./controllers/forbidden";
+import { badImplementation } from "./controllers/bad-implementation";
+
 const expressErrors = require("express");
 const routerErrors = expressErrors.Router();
-const {
-  badRequest,
-  unAuthorized,
-  forbidden,
-  badImplementation,
-} = require("./controllers");
 
 routerErrors.post("/400", badRequest);
 
-routerErrors.post("/401", unAuthorized);
+routerErrors.post("/401", unauthorized);
 
 routerErrors.post("/403", forbidden);
 
