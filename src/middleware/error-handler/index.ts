@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Boom } from "@hapi/boom";
-import { loggerWinston } from "../logger-winston";
+import { loggerWinston } from "../../utils/loggers/logger-winston";
 
 export const errorHandler = (
   error: Boom,
