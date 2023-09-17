@@ -2,13 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import { errorHandler } from "./middleware/error-handler";
 import { router as auth } from "./modules/auth";
 import { router as errors } from "./modules/errors";
+import { accessLogStream, skipLog } from "./middleware/logger-morgan";
+import { loggerWinston } from "./middleware/logger-winston";
 const express = require("express");
 require("dotenv").config();
 const boom = require("@hapi/boom");
-const fs = require("fs");
 const morgan = require("morgan");
-const { createLogger, format, transports } = require("winston");
-const { join } = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,26 +16,9 @@ app.use(express.json());
 
 app.use(morgan("combined"));
 
-const accessLogStream = fs.createWriteStream(join(__dirname, "access.log"), {
-  flags: "a",
-});
-
-function skipLog(req: Request, res: Response) {
-  return res.statusCode !== 500;
-}
-
 app.use(morgan("combined", { stream: accessLogStream, skip: skipLog }));
 app.get("/ping", async (req: Request, res: Response) => {
   return res.json({ message: "pong" });
-});
-
-const logger = createLogger({
-  level: "info",
-  format: format.combine(format.timestamp(), format.json()),
-  transports: [
-    new transports.Console(),
-    new transports.File({ filename: "logfile.log" }),
-  ],
 });
 
 app.use("/auth", auth);
@@ -59,6 +41,6 @@ process.on("unhandledRejection", (reason, promise) => {
 });
 
 app.listen(PORT, () => {
-  logger.info("Server is running");
+  loggerWinston.info("Server is running");
   console.log(`Server is running on http://localhost:${PORT}`);
 });
