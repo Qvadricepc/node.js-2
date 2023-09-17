@@ -2,7 +2,10 @@ import { Request, Response, NextFunction } from "express";
 import { errorHandler } from "./middleware/error-handler";
 import { router as auth } from "./modules/auth";
 import { router as errors } from "./modules/errors";
-import { accessLogStream, skipLog } from "./utils/loggers/logger-morgan";
+import {
+  accessLogStream,
+  skipLog,
+} from "./utils/loggers/logger-to-file-morgan";
 import { loggerWinston } from "./utils/loggers/logger-winston";
 const express = require("express");
 require("dotenv").config();
