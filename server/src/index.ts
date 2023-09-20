@@ -7,6 +7,7 @@ import {
   skipLog,
 } from "./utils/loggers/logger-to-file-morgan";
 import { loggerWinston } from "./utils/loggers/logger-winston";
+import { noCache } from "./middleware/no-cache";
 const express = require("express");
 require("dotenv").config();
 const boom = require("@hapi/boom");
@@ -18,9 +19,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 app.use(morgan("combined"));
+app.use(noCache);
 
 app.use(morgan("combined", { stream: accessLogStream, skip: skipLog }));
-app.get("/ping", async (req: Request, res: Response) => {
+app.get("/", async (req: Request, res: Response) => {
   return res.json({ message: "pong" });
 });
 
