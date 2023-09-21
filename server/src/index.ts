@@ -7,19 +7,26 @@ import {
   skipLog,
 } from "./utils/loggers/logger-to-file-morgan";
 import { loggerWinston } from "./utils/loggers/logger-winston";
-import { noCache } from "./middleware/no-cache";
+import helmet from "helmet";
 const express = require("express");
 require("dotenv").config();
 const boom = require("@hapi/boom");
 const morgan = require("morgan");
+const nocache = require("nocache");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.set("etag", "strong");
 
 app.use(morgan("combined"));
-app.use(noCache);
+app.use(nocache());
+app.use(cors());
+app.use(helmet());
+app.use(cookieParser());
 
 app.use(morgan("combined", { stream: accessLogStream, skip: skipLog }));
 app.get("/", async (req: Request, res: Response) => {
