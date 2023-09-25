@@ -28,6 +28,8 @@ module.exports = {
     '@typescript-eslint/no-unsafe-assignment': 'off',
     'eslint-disable-next-line': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-unsafe-argument': 0,
+    '@typescript-eslint/no-unsafe-member-access': 0
   },
   ignorePatterns: [".eslintrc.cjs", "vite.config.ts"],
 }
