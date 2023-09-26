@@ -1,6 +1,6 @@
 import { createLogger, format, transports } from "winston";
 const path = require("path");
-const logPath = path.join(__dirname, "../../logs/logfile-winston.log");
+const logPath = path.join(__dirname, "../../../../logs/logfile-winston.log");
 
 export const loggerWinston = createLogger({
   level: "info",

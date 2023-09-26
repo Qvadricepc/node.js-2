@@ -27,6 +27,5 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
 
   return res.json({
     accessToken: tokens.accessToken,
-    refreshToken: tokens.refreshToken,
   });
 };

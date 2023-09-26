@@ -3,7 +3,7 @@ import { join } from "path";
 import { Request, Response } from "express";
 
 export const accessLogStream = fs.createWriteStream(
-  join(__dirname, "../../logs/access-morgan.log"),
+  join(__dirname, "../../../../logs/access-morgan.log"),
   {
     flags: "a",
   },
